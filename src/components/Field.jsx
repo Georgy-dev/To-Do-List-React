@@ -1,14 +1,15 @@
-function Field() {
+function Field({ className = "", id, label, type = "text" }) {
     return (
-        <div className="todo__field field">
-            <label className="field__label" htmlFor="new-task">
-                New task
+        <div className={`field ${className}`}>
+            <label className="field__label" htmlFor={id}>
+                {label}
             </label>
             <input
                 className="field__input"
                 id="new-task"
                 placeholder=" "
                 autoComplete="off"
+                type={type}
             />
         </div>
     );

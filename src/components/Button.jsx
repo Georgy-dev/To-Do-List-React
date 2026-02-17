@@ -1,7 +1,7 @@
-function Button() {
+function Button({ className = "", type = "button", children }) {
     return (
-        <button className="button" type="submit">
-            Add
+        <button className={`button ${className}`} type={type}>
+            {children}
         </button>
     );
 }
