@@ -1,4 +1,4 @@
-function Field({ className = "", id, label, type = "text", onInput }) {
+function Field({ className = "", id, label, type = "text", onInput, value }) {
     return (
         <div className={`field ${className}`}>
             <label className="field__label" htmlFor={id}>
@@ -11,6 +11,7 @@ function Field({ className = "", id, label, type = "text", onInput }) {
                 autoComplete="off"
                 type={type}
                 onInput={onInput}
+                value={value}
             />
         </div>
     );
