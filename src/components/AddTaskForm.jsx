@@ -1,9 +1,15 @@
 import Button from "./Button";
 import Field from "./Field";
 
-function AddTaskForm() {
+function AddTaskForm({ addTask }) {
+    const onSubmit = (event) => {
+        event.preventDefault();
+
+        addTask();
+    };
+
     return (
-        <form className="todo__form">
+        <form className="todo__form" onSubmit={onSubmit}>
             <Field
                 className="todo__field"
                 label="New task title"

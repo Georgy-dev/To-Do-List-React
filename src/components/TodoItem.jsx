@@ -1,4 +1,11 @@
-function TodoItem({ className = "", title = "", isDone, id }) {
+function TodoItem({
+    className = "",
+    title = "",
+    isDone,
+    id,
+    onDeleteTaskButtonClick,
+    onTaskCompleteChange,
+}) {
     return (
         <li className={`todo-item ${className}`}>
             <input
@@ -6,7 +13,9 @@ function TodoItem({ className = "", title = "", isDone, id }) {
                 id={id}
                 type="checkbox"
                 checked={isDone}
-                readOnly
+                onChange={({ target }) =>
+                    onTaskCompleteChange(id, target.checked)
+                }
             />
             <label className="todo-item__label" htmlFor={id}>
                 {title}
@@ -15,6 +24,7 @@ function TodoItem({ className = "", title = "", isDone, id }) {
                 className="todo-item__delete-button"
                 aria-label="Delete"
                 title="Delete"
+                onClick={() => onDeleteTaskButtonClick(id)}
             >
                 <svg
                     width="20"

@@ -1,6 +1,10 @@
 import TodoItem from "./TodoItem";
 
-function TodoList({ tasks = [] }) {
+function TodoList({
+    tasks = [],
+    onDeleteTaskButtonClick,
+    onTaskCompleteChange,
+}) {
     const hasTasks = tasks.length !== 0;
 
     if (!hasTasks) {
@@ -13,6 +17,8 @@ function TodoList({ tasks = [] }) {
                 <TodoItem
                     className="todo__item"
                     key={task.id}
+                    onDeleteTaskButtonClick={onDeleteTaskButtonClick}
+                    onTaskCompleteChange={onTaskCompleteChange}
                     {...task} // так же, как и снизу, только короче
 
                     // id={task.id}
