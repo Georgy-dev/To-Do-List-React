@@ -4,16 +4,22 @@ function TodoList({
     tasks = [],
     onDeleteTaskButtonClick,
     onTaskCompleteChange,
+    filteredTasks,
 }) {
-    const hasTasks = tasks.length !== 0;
+    const hasTasks = tasks.length > 0;
+    const isEmptyFilteredTasks = filteredTasks?.length === 0; // ? нужен, так как filteredTasks может быть null
 
     if (!hasTasks) {
-        return <div className="todo__empty-message"></div>;
+        return <div className="todo__empty-message">No tasks</div>;
+    }
+
+    if (hasTasks && isEmptyFilteredTasks) {
+        return <div className="todo__empty-message">Tasks not found</div>;
     }
 
     return (
         <ul className="todo__list">
-            {tasks.map((task) => (
+            {(filteredTasks ?? tasks).map((task) => (
                 <TodoItem
                     className="todo__item"
                     key={task.id}

@@ -1,6 +1,6 @@
 import Field from "./Field";
 
-function SearchTaskForm({ onSearchInput }) {
+function SearchTaskForm({ searchQuery, setSearchQuery }) {
     return (
         <form
             className="todo__form"
@@ -11,7 +11,8 @@ function SearchTaskForm({ onSearchInput }) {
                 label="Search task"
                 id="search-task"
                 type="search"
-                onInput={(event) => onSearchInput(event.target.value)}
+                value={searchQuery}
+                onInput={(event) => setSearchQuery(event.target.value)}
             />
         </form>
     );
