@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AddTaskForm from "./AddTaskForm";
 import SearchTaskForm from "./SearchTaskForm";
 import TodoInfo from "./TodoInfo";
 import TodoList from "./TodoList";
+import Button from "./Button";
 
 function Todo() {
     const [tasks, setTasks] = useState(() => {
@@ -21,6 +22,10 @@ function Todo() {
     const [newTaskTitle, setNewTaskTitle] = useState("");
 
     const [searchQuery, setSearchQuery] = useState("");
+
+    const newTaskInputRef = useRef(null);
+    const firstIncompleteTaskRef = useRef(null);
+    const firstIncompleteTaskID = tasks.find((item) => !item.isDone)?.id; // ?. для безопасности, вдруг у нас такого элемента нет
 
     const deleteAllTasks = () => {
         const isConfirmed = confirm(
@@ -61,12 +66,18 @@ function Todo() {
             setNewTaskTitle(""); // как form.reset()
 
             setSearchQuery(""); // чтобы после переключения с поиска на добавление новой задачи поисковая строка была пустой
+
+            newTaskInputRef.current.focus();
         }
     };
 
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     }, [tasks]);
+
+    useEffect(() => {
+        newTaskInputRef.current.focus();
+    }, []);
 
     const clearSearchQuery = searchQuery.trim().toLowerCase();
     const filteredTasks =
@@ -83,6 +94,7 @@ function Todo() {
                 addTask={addTask}
                 newTaskTitle={newTaskTitle}
                 setNewTaskTitle={setNewTaskTitle}
+                newTaskInputRef={newTaskInputRef}
             />
             <SearchTaskForm
                 searchQuery={searchQuery}
@@ -93,11 +105,22 @@ function Todo() {
                 done={tasks.filter(({ isDone }) => isDone).length}
                 onDeleteAllButtonClick={deleteAllTasks}
             />
+            <Button
+                onClick={() =>
+                    firstIncompleteTaskRef.current?.scrollIntoView({
+                        behaviour: "smooth",
+                    })
+                }
+            >
+                Show first incomplete task
+            </Button>
             <TodoList
                 tasks={tasks}
                 onDeleteTaskButtonClick={deleteTask}
                 onTaskCompleteChange={toggleTaskComplete}
                 filteredTasks={filteredTasks}
+                firstIncompleteTaskRef={firstIncompleteTaskRef}
+                firstIncompleteTaskID={firstIncompleteTaskID}
             />
         </div>
     );

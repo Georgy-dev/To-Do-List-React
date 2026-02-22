@@ -1,7 +1,12 @@
 import Button from "./Button";
 import Field from "./Field";
 
-function AddTaskForm({ addTask, newTaskTitle, setNewTaskTitle }) {
+function AddTaskForm({
+    addTask,
+    newTaskTitle,
+    setNewTaskTitle,
+    newTaskInputRef,
+}) {
     const onSubmit = (event) => {
         event.preventDefault();
 
@@ -18,6 +23,7 @@ function AddTaskForm({ addTask, newTaskTitle, setNewTaskTitle }) {
                 onInput={(event) => {
                     setNewTaskTitle(event.target.value);
                 }}
+                ref={newTaskInputRef}
             />
             <Button type="submit">Add</Button>
         </form>

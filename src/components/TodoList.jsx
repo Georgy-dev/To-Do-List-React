@@ -5,6 +5,8 @@ function TodoList({
     onDeleteTaskButtonClick,
     onTaskCompleteChange,
     filteredTasks,
+    firstIncompleteTaskRef,
+    firstIncompleteTaskID,
 }) {
     const hasTasks = tasks.length > 0;
     const isEmptyFilteredTasks = filteredTasks?.length === 0; // ? нужен, так как filteredTasks может быть null
@@ -25,6 +27,11 @@ function TodoList({
                     key={task.id}
                     onDeleteTaskButtonClick={onDeleteTaskButtonClick}
                     onTaskCompleteChange={onTaskCompleteChange}
+                    ref={
+                        task.id === firstIncompleteTaskID
+                            ? firstIncompleteTaskRef
+                            : null
+                    }
                     {...task} // так же, как и снизу, только короче
 
                     // id={task.id}

@@ -1,4 +1,12 @@
-function Field({ className = "", id, label, type = "text", onInput, value }) {
+function Field({
+    className = "",
+    id,
+    label,
+    type = "text",
+    onInput,
+    value,
+    ref,
+}) {
     return (
         <div className={`field ${className}`}>
             <label className="field__label" htmlFor={id}>
@@ -12,6 +20,7 @@ function Field({ className = "", id, label, type = "text", onInput, value }) {
                 type={type}
                 onInput={onInput}
                 value={value}
+                ref={ref}
             />
         </div>
     );
