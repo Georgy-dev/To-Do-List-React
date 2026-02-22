@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 function TodoItem({
     className = "",
     title = "",
@@ -47,4 +49,4 @@ function TodoItem({
     );
 }
 
-export default TodoItem;
+export default memo(TodoItem);

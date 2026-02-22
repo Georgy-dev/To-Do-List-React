@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 function TodoInfo({ total, done, onDeleteAllButtonClick }) {
     const hasTasks = total > 0;
 
@@ -19,4 +21,4 @@ function TodoInfo({ total, done, onDeleteAllButtonClick }) {
     );
 }
 
-export default TodoInfo;
+export default memo(TodoInfo);
