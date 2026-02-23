@@ -6,6 +6,7 @@ function Field({
     onInput,
     value,
     ref,
+    error,
 }) {
     return (
         <div className={`field ${className}`}>
@@ -13,7 +14,7 @@ function Field({
                 {label}
             </label>
             <input
-                className="field__input"
+                className={`field__input ${error ? "is-invalid" : ""}`}
                 id="new-task"
                 placeholder=" "
                 autoComplete="off"
@@ -22,6 +23,12 @@ function Field({
                 value={value}
                 ref={ref}
             />
+            {error && (
+                <span className="field__error" title={error}>
+                    {/** title={error} - для того, чтобы при большом тексте пользователь смог прочитать коммент полностью при наведении на текст ошибки, подробнее см. field.css */}
+                    {error}
+                </span>
+            )}
         </div>
     );
 }
