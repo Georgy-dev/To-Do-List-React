@@ -1,13 +1,11 @@
 import TodoItem from "./TodoItem";
 
-function TodoList({
-    tasks = [],
-    onDeleteTaskButtonClick,
-    onTaskCompleteChange,
-    filteredTasks,
-    firstIncompleteTaskRef,
-    firstIncompleteTaskID,
-}) {
+import { useContext } from "react";
+import { TasksContext } from "../context/TasksContext";
+
+function TodoList() {
+    const { tasks, filteredTasks } = useContext(TasksContext);
+
     const hasTasks = tasks.length > 0;
     const isEmptyFilteredTasks = filteredTasks?.length === 0; // ? нужен, так как filteredTasks может быть null
 
@@ -25,13 +23,6 @@ function TodoList({
                 <TodoItem
                     className="todo__item"
                     key={task.id}
-                    onDeleteTaskButtonClick={onDeleteTaskButtonClick}
-                    onTaskCompleteChange={onTaskCompleteChange}
-                    ref={
-                        task.id === firstIncompleteTaskID
-                            ? firstIncompleteTaskRef
-                            : null
-                    }
                     {...task} // так же, как и снизу, только короче
 
                     // id={task.id}
