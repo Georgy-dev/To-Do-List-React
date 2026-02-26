@@ -10,6 +10,10 @@ const tasksAPI = {
         return fetch(URL).then((response) => response.json());
     },
 
+    getByID: (id) => {
+        return fetch(`${URL}/${id}`).then((response) => response.json());
+    },
+
     add: (task) => {
         return fetch(URL, {
             method: "POST",
