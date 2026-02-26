@@ -1,3 +1,5 @@
+import styles from "./Field.module.scss";
+
 function Field({
     className = "",
     id,
@@ -9,12 +11,12 @@ function Field({
     error,
 }) {
     return (
-        <div className={`field ${className}`}>
-            <label className="field__label" htmlFor={id}>
+        <div className={`${styles.field} ${className}`}>
+            <label className={`${styles.label}`} htmlFor={id}>
                 {label}
             </label>
             <input
-                className={`field__input ${error ? "is-invalid" : ""}`}
+                className={`${styles.input} ${error ? styles.isInvalid : ""}`}
                 id="new-task"
                 placeholder=" "
                 autoComplete="off"
@@ -24,7 +26,7 @@ function Field({
                 ref={ref}
             />
             {error && (
-                <span className="field__error" title={error}>
+                <span className={`${styles.error}`} title={error}>
                     {/** title={error} - для того, чтобы при большом тексте пользователь смог прочитать коммент полностью при наведении на текст ошибки, подробнее см. field.css */}
                     {error}
                 </span>

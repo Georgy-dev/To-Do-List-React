@@ -1,3 +1,5 @@
+import styles from "./Button.module.scss";
+
 function Button({
     className = "",
     type = "button",
@@ -7,7 +9,7 @@ function Button({
 }) {
     return (
         <button
-            className={`button ${className}`}
+            className={`${styles.button} ${className}`}
             onClick={onClick}
             type={type}
             disabled={isDisabled}

@@ -1,11 +1,1 @@
-{
-    tasks: [
-        {
-            id: "951f",
-            title: "Learn React",
-            isDone: false,
-        },
-        { id: "5444", title: "Learn JS", isDone: true },
-        { id: "123", title: "Learn Routing in React", isDone: true },
-    ],
-}
+{tasks:[{id:'951f',title:'Learn React',isDone:false},{id:'5444',title:'Learn JS',isDone:true},{id:'123',title:'Learn Routing in React',isDone:true}]}
