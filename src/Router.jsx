@@ -2,6 +2,29 @@
 
 import { useEffect, useState } from "react";
 
+const matchPath = (path, route) => {
+    const pathParts = path.split("/"); // ['', 'tasks', '123']
+    const routeParts = route.split("/"); // ['', 'tasks', ':id']
+
+    if (pathParts.length !== routeParts.length) {
+        return null;
+    }
+
+    const params = {};
+
+    for (let i = 0; i < routeParts.length; i++) {
+        if (routeParts[i].startsWith(":")) {
+            const paramName = routeParts[i].slice(1);
+
+            params[paramName] = pathParts[i];
+        } else if (routeParts[i] !== pathParts[i]) {
+            return null;
+        }
+    }
+
+    return params; // если путь подошел под шаблон
+};
+
 export const useRoute = () => {
     const [path, setPath] = useState(window.location.pathname);
 
@@ -23,17 +46,19 @@ export const useRoute = () => {
 function Router({ routes }) {
     const path = useRoute(); // получаем актуальный путь
 
-    if (path.startsWith("/tasks/")) {
-        const id = path.replace("/tasks/", "");
+    for (const route in routes) {
+        const params = matchPath(path, route);
 
-        const TaskPage = routes["/tasks/:id"]; // :id - шаблон маршрутизации
+        if (params) {
+            const Page = routes[route];
 
-        return <TaskPage params={{ id }} />;
+            return <Page params={params} />;
+        }
     }
 
-    const Page = routes[path] ?? routes["*"]; // в routes['*'] находится ссылка на компонент страницы 404
+    const NotFound = routes["*"];
 
-    return <Page />;
+    return <NotFound />;
 }
 
 export default Router;
