@@ -23,6 +23,14 @@ export const useRoute = () => {
 function Router({ routes }) {
     const path = useRoute(); // получаем актуальный путь
 
+    if (path.startsWith("/tasks/")) {
+        const id = path.replace("/tasks/", "");
+
+        const TaskPage = routes["/tasks/:id"]; // :id - шаблон маршрутизации
+
+        return <TaskPage params={{ id }} />;
+    }
+
     const Page = routes[path] ?? routes["*"]; // в routes['*'] находится ссылка на компонент страницы 404
 
     return <Page />;

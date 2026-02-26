@@ -5,7 +5,7 @@ import TaskPage from "./pages/TaskPage";
 function App() {
     const routes = {
         "/": TasksPage,
-        "/tasks/123": TaskPage,
+        "/tasks/:id": TaskPage,
         "*": () => {
             return (
                 <div>
