@@ -19,6 +19,9 @@ export function TasksProvider({ children }) {
         setSearchQuery,
         newTaskInputRef,
         addTask,
+
+        disappearingTaskID,
+        appearingTaskID,
     } = useTasks();
 
     const { firstIncompleteTaskRef, firstIncompleteTaskID } =
@@ -41,6 +44,9 @@ export function TasksProvider({ children }) {
                 setSearchQuery,
                 newTaskInputRef,
                 addTask,
+
+                disappearingTaskID,
+                appearingTaskID,
             }}
         >
             {children}

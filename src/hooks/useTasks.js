@@ -8,6 +8,10 @@ function useTasks() {
 
     const [searchQuery, setSearchQuery] = useState("");
 
+    const [disappearingTaskID, setDisappearingTaskID] = useState(null);
+
+    const [appearingTaskID, setAppearingTaskID] = useState(null);
+
     const newTaskInputRef = useRef(null);
 
     const deleteAllTasks = useCallback(() => {
@@ -22,11 +26,16 @@ function useTasks() {
 
     const deleteTask = useCallback(
         (taskId) => {
-            tasksAPI
-                .delete(taskId)
-                .then(() =>
-                    setTasks(tasks.filter((task) => task.id !== taskId)),
-                ); // фильтрация локальных значений
+            tasksAPI.delete(taskId).then(() => {
+                setDisappearingTaskID(taskId); // запускаем анимацию удаления
+
+                setTimeout(() => {
+                    setTasks(tasks.filter((task) => task.id !== taskId));
+                    // фильтрация локальных значений
+
+                    setDisappearingTaskID(null); // сбрасываем ID удаленной задачи
+                }, 400);
+            });
         },
         [tasks],
     );
@@ -54,14 +63,20 @@ function useTasks() {
             isDone: false,
         };
 
-        tasksAPI.add(newTask).then((addedTsk) => {
-            setTasks((prevTasks) => [...prevTasks, addedTsk]);
+        tasksAPI.add(newTask).then((addedTask) => {
+            setTasks((prevTasks) => [...prevTasks, addedTask]);
 
             setNewTaskTitle(""); // как form.reset()
 
             setSearchQuery(""); // чтобы после переключения с поиска на добавление новой задачи поисковая строка была пустой
 
             newTaskInputRef.current.focus();
+
+            setAppearingTaskID(addedTask.id);
+
+            setTimeout(() => {
+                setAppearingTaskID(null);
+            }, 400);
         });
     }, []);
 
@@ -94,6 +109,9 @@ function useTasks() {
         setSearchQuery,
         newTaskInputRef,
         addTask,
+
+        disappearingTaskID,
+        appearingTaskID,
     };
 }
 
