@@ -39,8 +39,6 @@ const tasksReducer = (state, action) => {
 function useTasks() {
     const [tasks, dispatch] = useReducer(tasksReducer, []);
 
-    const [newTaskTitle, setNewTaskTitle] = useState("");
-
     const [searchQuery, setSearchQuery] = useState("");
 
     const [disappearingTaskID, setDisappearingTaskID] = useState(null);
@@ -80,7 +78,7 @@ function useTasks() {
         });
     }, []);
 
-    const addTask = useCallback((title) => {
+    const addTask = useCallback((title, callbackAfterAdding) => {
         const newTask = {
             title,
             isDone: false,
@@ -88,6 +86,8 @@ function useTasks() {
 
         tasksAPI.add(newTask).then((addedTask) => {
             dispatch({ type: "ADD", task: addedTask });
+
+            callbackAfterAdding();
 
             setNewTaskTitle(""); // как form.reset()
 
@@ -130,8 +130,6 @@ function useTasks() {
         deleteTask,
         toggleTaskComplete,
 
-        newTaskTitle,
-        setNewTaskTitle,
         searchQuery,
         setSearchQuery,
         newTaskInputRef,
