@@ -101,19 +101,21 @@ Open http://localhost:5173
 
 Проект построен по Feature-Sliced Design методологии для удобной навигации и масштабирования:
 
-src/.
-├── app/.
-├── entities/.
-├── features/.
-├── shared/.
-├── pages/.
-├── widgets/.
-└── main.jsx.
+src/
+├── app/
+├── pages/
+├── widgets/
+├── features/
+├── entities/
+├── shared/
+└── main.jsx
 
 ---
 
 ## Контакты
 
 Автор: Георгий Агеев.
+
 GitHub: https://github.com/Georgy-dev.
+
 Telegram: [@GeorgeFrontDev](https://t.me/GeorgeFrontDev).
