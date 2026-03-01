@@ -43,8 +43,11 @@ React Router для навигации по задачам.
 #### State Management & Optimization
 
 useState, useEffect, useMemo, useCallback, memo.
+
 useReducer для сложной логики задач.
+
 useContext (против prop drilling).
+
 Кастомные хуки: useTasks, useLocalStorage, useIncompleteTaskScroll.
 
 ---
@@ -102,12 +105,19 @@ Open http://localhost:5173
 Проект построен по Feature-Sliced Design методологии для удобной навигации и масштабирования:
 
 src/
+
 ├── app/
+
 ├── pages/
+
 ├── widgets/
+
 ├── features/
+
 ├── entities/
+
 ├── shared/
+
 └── main.jsx
 
 ---
