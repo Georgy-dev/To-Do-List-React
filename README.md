@@ -36,8 +36,8 @@
 
 #### Frontend
 
-React (JSX) + Vite (быстрый сборщик).
-Модульные стили (CSS Modules).
+React (JSX) + Vite (быстрый сборщик).  
+Модульные стили (CSS Modules).  
 React Router для навигации по задачам.
 
 #### State Management & Optimization
@@ -51,10 +51,10 @@ useContext (против prop drilling).
 
 ## Инструменты и практики
 
-Git + Git Flow методология.
-API - интеграция с json-server.
-Анимации CSS.
-Архитектура: Feature-Sliced Design (FSD) — проект переписан для масштабируемости.
+Git + Git Flow методология.  
+API - интеграция с json-server.  
+Анимации CSS.  
+Архитектура: Feature-Sliced Design (FSD) — проект переписан для масштабируемости.  
 Защита от Cross-Site Scripting.
 
 ---
@@ -101,19 +101,19 @@ Open http://localhost:5173
 
 Проект построен по Feature-Sliced Design методологии для удобной навигации и масштабирования:
 
-src/
-├── app/
-├── entities/
-├── features/
-├── shared/
-├── pages/
-├── widgets/
-└── main.jsx
+src/.
+├── app/.
+├── entities/.
+├── features/.
+├── shared/.
+├── pages/.
+├── widgets/.
+└── main.jsx.
 
 ---
 
 ## Контакты
 
-Автор: Георгий Агеев
-GitHub: https://github.com/Georgy-dev
-Telegram: [@GeorgeFrontDev](https://t.me/GeorgeFrontDev)
+Автор: Георгий Агеев.
+GitHub: https://github.com/Georgy-dev.
+Telegram: [@GeorgeFrontDev](https://t.me/GeorgeFrontDev).
