@@ -1,5 +1,7 @@
 // Этот компонент иммитирует обычную ссылку, но работает по правилам react
 
+import { BASE_URL } from "@/shared/constants";
+
 function RouterLink({ to, children, ...rest }) {
     const handleClick = (event) => {
         event.preventDefault();
@@ -11,7 +13,7 @@ function RouterLink({ to, children, ...rest }) {
     };
 
     return (
-        <a href={to} onClick={handleClick} {...rest}>
+        <a href={`${BASE_URL}${to}`} onClick={handleClick} {...rest}>
             {children}
         </a>
     );

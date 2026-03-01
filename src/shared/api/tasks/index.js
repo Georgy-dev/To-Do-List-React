@@ -1,48 +1,11 @@
-const URL = "http://localhost:3001/tasks";
+// В dev режиме работает json-server
+// А в build режиме будет работать через local storage
 
-const headers = {
-    "Content-Type": "application/json",
-    charset: "UTF-8",
-};
+import localAPI from "./local";
+import serverAPI from "./server";
 
-const tasksAPI = {
-    getAll: () => {
-        return fetch(URL).then((response) => response.json());
-    },
+const isLocal = import.meta.env.VITE_STATIC_BACKEND === "true";
 
-    getByID: (id) => {
-        return fetch(`${URL}/${id}`).then((response) => response.json());
-    },
-
-    add: (task) => {
-        return fetch(URL, {
-            method: "POST",
-            headers,
-            body: JSON.stringify(task),
-        }).then((response) => response.json());
-    },
-
-    delete: (id) => {
-        return fetch(`${URL}/${id}`, {
-            method: "DELETE",
-        });
-    },
-
-    deleteAll: (tasks) => {
-        return Promise.all(
-            tasks.map((task) => {
-                tasksAPI.delete(task.id);
-            }),
-        );
-    },
-
-    toggleComplete: (id, isDone) => {
-        return fetch(`${URL}/${id}`, {
-            method: "PATCH",
-            headers,
-            body: JSON.stringify({ isDone }),
-        });
-    },
-};
+const tasksAPI = isLocal ? localAPI : serverAPI;
 
 export default tasksAPI;
