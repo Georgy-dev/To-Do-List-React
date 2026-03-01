@@ -17,7 +17,7 @@ function Field({
             </label>
             <input
                 className={`${styles.input} ${error ? styles.isInvalid : ""}`}
-                id="new-task"
+                id={id}
                 placeholder=" "
                 autoComplete="off"
                 type={type}

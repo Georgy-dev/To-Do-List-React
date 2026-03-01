@@ -89,8 +89,6 @@ function useTasks() {
 
             callbackAfterAdding();
 
-            setNewTaskTitle(""); // как form.reset()
-
             setSearchQuery(""); // чтобы после переключения с поиска на добавление новой задачи поисковая строка была пустой
 
             newTaskInputRef.current.focus();
